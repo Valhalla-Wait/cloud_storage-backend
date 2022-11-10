@@ -1,0 +1,4 @@
+{
+  "PORT": 8000,
+  "dbUrl": "mongodb+srv://user:123@cloud-storage.ctwewuw.mongodb.net/cloudDB?retryWrites=true&w=majority"
+}
