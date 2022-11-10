@@ -1,14 +1,15 @@
 import express, {Express} from "express";
 import mongoose from "mongoose";
 import config from 'config'
-import authRouter from './router/auth.routes'
+import {authRouter} from './router/auth.routes'
+import { corsMiddleware } from "./middleware/cors.middleware";
 
 const PORT = config.get('PORT')
 
 const app: Express = express();
 
 app.use(express.json())
-
+app.use(corsMiddleware)
 app.use('/api/auth', authRouter)
 
 const start = async () => {

@@ -5,14 +5,14 @@ import {check, validationResult} from 'express-validator'
 import jwt from 'jsonwebtoken'
 import config from 'config'
 
-const router = Router()
+export const authRouter = Router()
 
 type RegistrationType = {
   email: string,
   password: string
 }
 
-router.post('/registration', 
+authRouter.post('/registration', 
   [
     check('email', 'Uncorrect email').isEmail(),
     check('password', "Password must be longer than 3 and shorter than 12").isLength({min:3, max: 12})
@@ -43,7 +43,7 @@ router.post('/registration',
   }
 })
 
-router.post('/login', async (req:Request, res:Response) => {
+authRouter.post('/login', async (req:Request, res:Response) => {
   try {
 
     const {email, password}:RegistrationType = req.body
@@ -74,5 +74,3 @@ router.post('/login', async (req:Request, res:Response) => {
     res.send({message: 'Server error'})
   }
 })
-
-export default router
